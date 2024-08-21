@@ -44,12 +44,10 @@ jobs:
       - name: Run RuboCop
         run: |
           bundle exec rubocop
-        continue-on-error: true
 
       - name: Run Slim-Lint
         run: |
           bundle exec slim-lint .
-        continue-on-error: true
 
       - name: Set up the database
         env:
