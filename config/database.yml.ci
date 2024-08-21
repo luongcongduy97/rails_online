@@ -8,4 +8,4 @@ default: &default
 
 test:
   <<: *default
-  database: rails_test
+  database: rails_online_test

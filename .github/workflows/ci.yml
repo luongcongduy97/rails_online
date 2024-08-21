@@ -52,11 +52,15 @@ jobs:
         continue-on-error: true
 
       - name: Set up the database
+        env:
+          RAILS_ENV: test
         run: |
           cp config/database.yml.ci config/database.yml
           bundle exec rake db:create
           bundle exec rake db:schema:load
 
       - name: Run tests
+        env:
+          RAILS_ENV: test
         run: |
           bundle exec rake test
