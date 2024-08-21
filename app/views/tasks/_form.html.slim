@@ -1,15 +1,18 @@
-= form_with(model: @task, class: "simple_form task form space-y-6") do |f|
-  .input.string.required.task_name
-    .flex
-      .text-red-500.mr-1 * 
-      = f.label :name, class: "block text-sm font-medium text-gray-700"
-    = f.text_field :name, autofocus: true, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+= form_with(model: @task, class: 'simple_form task form space-y-6') do |f|
+  div class='input string required task_name'
+    div class='flex'
+      div class='text-red-500 mr-1' *
+      = f.label :name, class: 'block text-sm font-medium text-gray-700'
+    = f.text_field :name, autofocus: true, class: 'mt-1 block w-full rounded-md border-gray-300 shadow-sm \
+                                                   focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50'
 
-  .input.text.optional.task_description
-    = f.label :description, class: "block text-sm font-medium text-gray-700"
-    = f.text_area :description, autofocus: true, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+  div class='input text optional task_description'
+    = f.label :description, class: 'block text-sm font-medium text-gray-700'
+    = f.text_area :description, autofocus: true, class: 'mt-1 block w-full rounded-md border-gray-300 shadow-sm \
+                                                         focus:ring focus:ring-blue-200 focus:ring-opacity-50'
 
-  - submit_text = @task.persisted? ? "Update Task" : "Create Task"
-  = f.submit submit_text, 
-    class: "w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:ring-opacity-50", 
+  - submit_text = @task.persisted? ? 'Update Task' : 'Create Task'
+  = f.submit submit_text,
+    class: 'w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 focus:outline-none  \
+            focus:ring-2 focus:ring-blue-200 focus:ring-opacity-50',
     data: { disable_with: submit_text }

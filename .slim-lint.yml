@@ -1,0 +1,9 @@
+# .slim-lint.yml
+
+exclude:
+  - "vendor/**/*"
+  - "bin/**/*"
+
+linters:
+  LineLength:
+    max: 150
