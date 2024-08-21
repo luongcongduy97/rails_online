@@ -1,6 +1,3 @@
-Sure! Here's the entire content for the `README.md` file that you can copy and paste directly:
-
-````markdown
 # Rails Task Management App
 
 This is a simple task management application built with Ruby on Rails. The application allows users to create, edit, and delete tasks.
@@ -19,7 +16,6 @@ Before you can clone and run the project, ensure you have the following installe
    ```bash
    gem install rails
    ```
-````
 
 Verify installation with `rails -v`.
 
@@ -107,3 +103,7 @@ If you'd like to contribute, please fork the repository and use a feature branch
 ## License
 
 This project is licensed under the MIT License.
+
+```
+
+```
