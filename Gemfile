@@ -20,6 +20,8 @@ gem 'tzinfo-data', platforms: %i[windows jruby]
 
 group :development, :test do
   gem 'debug', platforms: %i[mri windows]
+  gem 'rubocop', require: false
+  gem 'slim_lint', require: false
 end
 
 group :development do
