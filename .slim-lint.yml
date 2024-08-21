@@ -1,0 +1,5 @@
+# .slim-lint.yml
+
+linters:
+  LineLength:
+    max: 150
