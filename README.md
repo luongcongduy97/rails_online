@@ -105,5 +105,3 @@ If you'd like to contribute, please fork the repository and use a feature branch
 This project is licensed under the MIT License.
 
 ```
-
-```
