@@ -5,6 +5,7 @@ AllCops:
   Exclude:
     - "bin/bundle"
     - "config/environments/**/*"
+    - "vendor/bundle/**/*"
 
 Style/Documentation:
   Enabled: false
