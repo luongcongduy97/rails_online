@@ -1,0 +1,9 @@
+- if flash.any?
+  div class="fixed top-4 right-4 z-50"
+    - flash.each do |type, message|
+      - if type == 'notice'
+        - alert_class = 'bg-green-500 text-white'
+      - else
+        - alert_class = 'bg-red-500 text-white'
+      div class="p-4 mb-4 rounded shadow-lg #{alert_class}"
+        = message

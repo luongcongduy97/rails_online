@@ -20,6 +20,7 @@ gem 'tzinfo-data', platforms: %i[windows jruby]
 
 group :development, :test do
   gem 'debug', platforms: %i[mri windows]
+  gem 'rspec-rails'
   gem 'rubocop', require: false
   gem 'slim_lint', require: false
 end
@@ -30,5 +31,6 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'database_cleaner-active_record'
   gem 'selenium-webdriver'
 end
