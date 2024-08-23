@@ -27,6 +27,16 @@ RSpec.describe 'Tasks', type: :system do
       expect(page).to have_content('New Task')
     end
 
+    it 'displays an error when trying to create a task without a name' do
+      visit new_task_path
+
+      fill_in 'Name', with: ''
+      fill_in 'Description', with: 'Task description without a name'
+      click_button 'Create Task'
+
+      expect(page).to have_content("Name can't be blank")
+    end
+
     it 'allows the user to edit an existing task' do
       visit edit_task_path(task1)
 

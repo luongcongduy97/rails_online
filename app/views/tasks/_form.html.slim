@@ -1,4 +1,9 @@
-= form_with(model: @task, class: 'simple_form task form space-y-6') do |f|
+= form_with(model: @task, class: 'simple_form task form space-y-6', data: { turbo: false }) do |f|
+  - if @task.errors.any?
+    div class='bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6' role='alert'
+      ul
+        - @task.errors.full_messages.each do |message|
+          li = message
   div class='input string required task_name'
     div class='flex'
       div class='text-red-500 mr-1' *
