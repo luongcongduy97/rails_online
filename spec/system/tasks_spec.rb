@@ -6,10 +6,9 @@ require 'rails_helper'
 
 RSpec.describe 'Tasks', type: :system do
   describe 'task page' do
+    let!(:task1) { create(:task, name: 'Test Task 1', description: 'Task description 1') }
+    let!(:task2) { create(:task, name: 'Test Task 2', description: 'Task description 2') }
     it 'displays a list of tasks' do
-      Task.create!(name: 'Test Task 1', description: 'Task description 1')
-      Task.create!(name: 'Test Task 2', description: 'Task description 2')
-
       visit tasks_path
 
       expect(page).to have_content('Tasks')
@@ -29,9 +28,7 @@ RSpec.describe 'Tasks', type: :system do
     end
 
     it 'allows the user to edit an existing task' do
-      task = Task.create!(name: 'Edit Task', description: 'Task description')
-
-      visit edit_task_path(task)
+      visit edit_task_path(task1)
 
       fill_in 'Name', with: 'Updated Task'
       fill_in 'Description', with: 'Updated task description'
@@ -42,12 +39,12 @@ RSpec.describe 'Tasks', type: :system do
     end
 
     it 'allows the user to delete a task' do
-      Task.create!(name: 'Delete Task', description: 'Task description')
-
       visit tasks_path
 
       expect do
-        accept_confirm { click_on 'Delete' }
+        within "#task_#{task1.id}" do
+          accept_confirm { click_on 'Delete' }
+        end
         sleep 0.5
       end.to change(Task, :count).by(-1)
 
