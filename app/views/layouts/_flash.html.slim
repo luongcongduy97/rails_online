@@ -1,5 +1,9 @@
 - if flash.any?
-  div class="fixed top-4 right-4 z-50"
+  div(
+    class="fixed top-4 right-4 z-50 opacity-0 transition-opacity duration-500"
+    data-controller="flash-message"
+    data-flash-message-target="flashMessage"
+  )
     - flash.each do |type, message|
       - alert_class = type == 'notice' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
       div class="p-4 mb-4 rounded shadow-lg #{alert_class}"
