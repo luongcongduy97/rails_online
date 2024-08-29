@@ -9,7 +9,22 @@ html
     = stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload'
     = javascript_importmap_tags
 
-  body
+  body class="bg-gray-100 dark:bg-gray-900 dark:text-white"
+    header class="bg-gray-100 dark:bg-gray-800 shadow-md py-4" data-controller="dark-mode"
+      div class="container mx-auto px-5 flex justify-between items-center"
+        h1 class="text-2xl font-bold text-gray-800 dark:text-white" RailsOnline
+        div class="flex items-center"
+          span class="text-gray-800 dark:text-white mr-2" Dark Mode
+          button(
+            id="dark-mode-toggle"
+            class="relative inline-flex items-center h-6 rounded-full w-11 transition-colors duration-300 bg-gray-300 dark:bg-gray-700"
+            data-dark-mode-target="toggle"
+          )
+            span(
+              class="inline-block w-4 h-4 transform bg-white dark:bg-gray-900 rounded-full \
+                     translate-x-1 dark:translate-x-6 transition-transform duration-300"
+            )
     = render 'layouts/flash'
-    main.container.mx-auto.mt-28.px-5.flex.justify-center
-      = yield
+    main.dark:bg-gray-900.dark:text-white
+      .container.mx-auto.mt-28.px-5.flex.justify-center
+        = yield
