@@ -1,0 +1,5 @@
+= turbo_stream.replace dom_id(@task) do 
+  = render partial: "tasks/task", locals: { task: @task }
+= turbo_stream.update "flash" do
+  - flash.now[:notice] = "Task was successfully updated."
+  = render 'layouts/flash'

@@ -24,7 +24,8 @@ html
               class="inline-block w-4 h-4 transform bg-white dark:bg-gray-900 rounded-full \
                      translate-x-1 dark:translate-x-6 transition-transform duration-300"
             )
-    = render 'layouts/flash'
+    = turbo_frame_tag "flash"
+      = render 'layouts/flash'
     main.dark:bg-gray-900.dark:text-white
       .container.mx-auto.mt-28.px-5.flex.justify-center
         = yield
