@@ -1,18 +1,20 @@
 = turbo_frame_tag task
   div id="task_#{task.id}" class='task bg-white dark:bg-gray-900 shadow-md rounded-lg p-4 mb-4'
     div class='flex justify-between items-center'
-      = link_to task.name, task_path(task), data: { turbo_frame: "_top" }, class: 'text-lg font-semibold text-blue-600 dark:text-blue-400 hover:underline'
+      = link_to task.name, task_path(task), data: { turbo_frame: "_top" }, 
+        class: 'text-lg font-semibold text-blue-600 dark:text-blue-400 hover:underline'
 
-      div class='task__actions flex space-x-2'
-        = link_to 'Edit',
-                  edit_task_path(task),
-                  class: 'bg-gray-200 hover:bg-gray-300 text-gray-800 dark:bg-gray-700 dark:text-gray-200 \
-                          font-semibold py-2 px-4 rounded shadow transition duration-300 ease-in-out transform hover:scale-105'
-
-        = link_to 'Delete',
-                    task_path(task),
-                    data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete this task?' },
-                    class: 'bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded shadow transition \
-                            duration-300 ease-in-out transform hover:scale-105 dark:bg-red-700'
+    div class='mt-2 text-sm text-gray-600 dark:text-gray-400'
+      = task.description
 
     hr class='mt-2 border-t dark:border-gray-700'
+
+    div class='task__actions flex space-x-4 mt-4 justify-end'
+      = link_to edit_task_path(task), class: 'task_edit text-gray-600 hover:text-gray-800 dark:text-gray-200 dark:hover:text-gray-400' do
+        svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
+          path stroke-linecap="round" stroke-linejoin="round" d="M12 20h9M16.5 3.5a2.121 2.121 0 113 3L7 19l-4 1 1-4 12.5-12.5z"
+
+      = link_to task_path(task), data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete this task?' }, 
+        class: 'task_delete text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-500' do
+        svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
+          path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-1 12a2 2 0 01-2 2H8a2 2 0 01-2-2L5 7M10 11v6m4-6v6M4 7h16M9 7V4a1 1 0 011-1h4a1 1 0 011 1v3"
