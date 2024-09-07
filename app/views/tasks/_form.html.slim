@@ -1,4 +1,4 @@
-= form_with(model: @task, class: 'simple_form task form space-y-6', data: { turbo: false }) do |f|
+= form_with(model: @task, class: 'simple_form task form space-y-4') do |f|
   - if @task.errors.any?
     div class='bg-red-100 dark:bg-red-200 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6' role='alert'
       ul
@@ -8,7 +8,7 @@
     div class='flex'
       div class='text-red-500 mr-1' *
       = f.label :name, class: 'block text-sm font-medium text-gray-700 dark:text-gray-300'
-    = f.text_field :name, autofocus: true, class: 'mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 text-black shadow-sm \
+    = f.text_field :name, autofocus: true, class: 'mt-1 block w-full rounded-md border-gray-300   text-black shadow-sm \
                                                    focus:border-blue-500 dark:focus:border-blue-300 focus:ring focus:ring-blue-200 \
                                                    dark:focus:ring-blue-500 focus:ring-opacity-50'
 
@@ -17,8 +17,12 @@
     = f.text_area :description, autofocus: true, class: 'mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 text-black shadow-sm \
                                                          focus:ring focus:ring-blue-200 dark:focus:ring-blue-500 focus:ring-opacity-50'
 
-  - submit_text = @task.persisted? ? 'Update Task' : 'Create Task'
-  = f.submit submit_text,
-    class: 'w-full bg-blue-500 dark:bg-blue-700 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 dark:hover:bg-blue-800 focus:outline-none  \
-            focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-500 focus:ring-opacity-50',
-    data: { disable_with: submit_text }
+  - submit_text = @task.persisted? ? 'Update' : 'Create'
+  div class='flex justify-center'
+    = f.submit submit_text,
+      class: 'bg-blue-500 dark:bg-blue-700 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 dark:hover:bg-blue-500 focus:outline-none  \
+              focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-500 focus:ring-opacity-50',
+      data: { disable_with: submit_text }
+    = link_to 'Cancel', tasks_path,
+      class: 'bg-gray-500 dark:bg-gray-700 text-white font-bold py-2 px-4 rounded hover:bg-gray-600 dark:hover:bg-gray-500 focus:outline-none  \
+              focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-500 focus:ring-opacity-50 ml-4'

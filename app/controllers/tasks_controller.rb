@@ -17,9 +17,12 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
 
     if @task.save
-      redirect_to tasks_path, notice: 'Task was successfully created.'
+      respond_to do |format|
+        format.html { redirect_to tasks_path }
+        format.turbo_stream
+      end
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -27,7 +30,10 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      redirect_to tasks_path, notice: 'Task was successfully updated.'
+      respond_to do |format|
+        format.html { redirect_to tasks_path, notice: 'Task was successfully destroyed.' }
+        format.turbo_stream
+      end
     else
       render :edit
     end
@@ -35,7 +41,10 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to tasks_path, notice: 'Task was successfully destroyed.'
+    respond_to do |format|
+      format.html { redirect_to tasks_path }
+      format.turbo_stream
+    end
   end
 
   private

@@ -114,6 +114,8 @@ GEM
       railties (>= 5.0.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    heroicon (1.0.0)
+      rails (>= 5.2)
     i18n (1.14.5)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.0.1)
@@ -340,6 +342,7 @@ DEPENDENCIES
   database_cleaner-active_record
   debug
   factory_bot_rails
+  heroicon
   importmap-rails
   jbuilder
   pg (~> 1.1)

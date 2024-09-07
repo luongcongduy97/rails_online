@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.task__icon {
+  stroke: #4A5568; /* Default color (gray-600) */
+}
+
+.dark .task__icon {
+  stroke: #D1D5DB; /* Dark mode color (gray-300) */
+}
+
 /*
 
 @layer components {
