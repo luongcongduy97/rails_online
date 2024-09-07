@@ -1,7 +1,7 @@
-= turbo_frame_tag dom_id(task)
-  div id="task_#{task.id}" class='task bg-white dark:bg-gray-900 shadow-md rounded-lg p-4 mb-4'
+= turbo_frame_tag task
+  div class='task bg-white dark:bg-gray-900 shadow-md rounded-lg p-4 mb-4'
     div class='flex justify-between items-center'
-      = link_to task.name, task_path(task), data: { turbo_frame: "_top" }, 
+      = link_to task.name, task_path(task), data: { turbo_frame: '_top' },
         class: 'text-lg font-semibold text-blue-600 dark:text-blue-400 hover:underline'
 
     div class='mt-2 text-sm text-gray-600 dark:text-gray-400'
@@ -11,8 +11,8 @@
 
     div class='task__actions flex space-x-4 mt-4 justify-end'
       = link_to edit_task_path(task), class: 'task_edit text-gray-600 hover:text-gray-800 dark:text-gray-200 dark:hover:text-gray-400' do
-        = heroicon "pencil", options: { class: "h-6 w-6" }
+        = heroicon 'pencil', options: { class: 'h-6 w-6' }
 
       = link_to task_path(task), data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete this task?' },
         class: 'task_delete text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-500' do
-        = heroicon "trash", options: { class: "h-6 w-6" }
+        = heroicon 'trash', options: { class: 'h-6 w-6' }

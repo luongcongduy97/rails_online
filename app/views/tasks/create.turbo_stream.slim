@@ -1,5 +1,5 @@
-= turbo_stream.prepend "tasks", partial: "tasks/task", locals: { task: @task }
-= turbo_stream.update Task.new, ""
-= turbo_stream.update "flash" do
-  - flash.now[:notice] = "Task was successfully created."
+= turbo_stream.prepend 'tasks', partial: 'tasks/task', locals: { task: @task }
+= turbo_stream.update Task.new, ''
+= turbo_stream.update 'flash' do
+  - flash.now[:notice] = 'Task was successfully created.'
   = render 'layouts/flash'

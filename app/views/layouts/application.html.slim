@@ -16,15 +16,15 @@ html
         div class="flex items-center"
           span class="text-gray-800 dark:text-white mr-2" Dark Mode
           button(
-            id="dark-mode-toggle"
-            class="relative inline-flex items-center h-6 rounded-full w-11 transition-colors duration-300 bg-gray-300 dark:bg-gray-700"
-            data-dark-mode-target="toggle"
+            id='dark-mode-toggle'
+            class='relative inline-flex items-center h-6 rounded-full w-11 transition-colors duration-300 bg-gray-300 dark:bg-gray-700'
+            data-dark-mode-target='toggle'
           )
             span(
-              class="inline-block w-4 h-4 transform bg-white dark:bg-gray-900 rounded-full \
-                     translate-x-1 dark:translate-x-6 transition-transform duration-300"
+              class='inline-block w-4 h-4 transform bg-white dark:bg-gray-900 rounded-full \
+                     translate-x-1 dark:translate-x-6 transition-transform duration-300'
             )
-    = turbo_frame_tag "flash"
+    = turbo_frame_tag 'flash'
       = render 'layouts/flash'
     main.dark:bg-gray-900.dark:text-white
       .container.mx-auto.mt-28.px-5.flex.justify-center
