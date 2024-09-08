@@ -3,8 +3,5 @@
 class Task < ApplicationRecord
   validates :name, presence: true
 
-  after_create_commit lambda {
-                        broadcast_prepend_to 'tasks', partial: 'tasks/task', locals: { quote: self },
-                                                      target: 'tasks'
-                      }
+  after_create_commit -> { broadcast_prepend_to 'tasks', partial: 'tasks/task', locals: { quote: self } }
 end
