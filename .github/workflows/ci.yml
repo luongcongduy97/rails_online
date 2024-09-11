@@ -36,10 +36,25 @@ jobs:
           ruby-version: "3.3.0"
           bundler-cache: true
 
+      - name: Install Yarn
+        run: |
+          curl -o- -L https://yarnpkg.com/install.sh | bash
+          export PATH="$HOME/.yarn/bin:$PATH"
+
+      - name: Install Node.js dependencies
+        run: |
+          yarn install
+
       - name: Install dependencies
         run: |
           sudo apt-get -yqq install libpq-dev
           bundle install
+
+      - name: Precompile assets
+        env:
+          RAILS_ENV: test
+        run: |
+          bundle exec rake assets:precompile
 
       - name: Run RuboCop
         run: |
