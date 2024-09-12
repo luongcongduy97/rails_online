@@ -5,10 +5,16 @@
 require 'rails_helper'
 
 RSpec.describe 'Tasks', type: :system do
-  # TODO: Will Update when login page implement
-  xdescribe 'task page' do
-    let!(:task1) { create(:task, name: 'Test Task 1', description: 'Task description 1') }
-    let!(:task2) { create(:task, name: 'Test Task 2', description: 'Task description 2') }
+  describe 'task page' do
+    let!(:company) { create(:company) }
+    let!(:user) { create(:user, company:) }
+    let!(:task1) { create(:task, name: 'Test Task 1', description: 'Task description 1', company:) }
+    let!(:task2) { create(:task, name: 'Test Task 2', description: 'Task description 2', company:) }
+
+    before do
+      login_as(user, scope: :user)
+    end
+
     it 'displays a list of tasks' do
       visit tasks_path
 
@@ -17,7 +23,7 @@ RSpec.describe 'Tasks', type: :system do
       expect(page).to have_content('Test Task 2')
     end
 
-    xit 'allows the user to create a new task' do
+    it 'allows the user to create a new task' do
       visit tasks_path
 
       click_on 'New Task'
