@@ -6,10 +6,9 @@ div class="container mx-auto mt-12 px-5 max-w-screen-md"
       data: { turbo_frame: dom_id(Task.new) },
       class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow-lg transition \
               duration-300 ease-in-out transform hover:scale-105 dark:bg-blue-700'
+  = turbo_stream_from current_company, 'tasks'
 
   = turbo_frame_tag Task.new
-
-  = turbo_stream_from 'tasks'
 
   = turbo_frame_tag 'tasks'
     = render @tasks
