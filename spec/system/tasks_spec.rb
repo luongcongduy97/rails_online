@@ -6,41 +6,49 @@ require 'rails_helper'
 
 RSpec.describe 'Tasks', type: :system do
   describe 'task page' do
-    let!(:company) { create(:company) }
-    let!(:user) { create(:user, company:) }
-    let!(:task1) { create(:task, name: 'Test Task 1', description: 'Task description 1', company:) }
-    let!(:task2) { create(:task, name: 'Test Task 2', description: 'Task description 2', company:) }
+    let!(:company1) { create(:company) }
+    let!(:company2) { create(:company) }
+    let!(:user1) { create(:user, company: company1) }
+    let!(:user2) { create(:user, company: company2) }
+    let!(:task1) { create(:task, name: 'Test Task 1', description: 'Task description 1', company: company1) }
+    let!(:task2) { create(:task, name: 'Test Task 2', description: 'Task description 2', company: company1) }
+    let!(:task3) do
+      create(:task, name: 'Task from another company', description: 'Task for another company', company: company2)
+    end
 
     before do
-      login_as(user, scope: :user)
+      login_as(user1, scope: :user)
+      visit tasks_path
     end
 
     it 'displays a list of tasks' do
-      visit tasks_path
-
       expect(page).to have_content('Tasks')
       expect(page).to have_content('Test Task 1')
       expect(page).to have_content('Test Task 2')
+      expect(page).not_to have_content('Task from another company')
     end
 
-    it 'allows the user to create a new task' do
-      visit tasks_path
-
+    it 'allows the user to create a new task for their company' do
       click_on 'New Task'
 
-      within('#new_task') do
-        fill_in 'Name', with: 'New Task'
-        fill_in 'Description', with: 'New task description'
-        click_button 'Create'
-      end
+      expect do
+        within('#new_task') do
+          fill_in 'Name', with: 'New Task for Company 1'
+          fill_in 'Description', with: 'New task description for Company 1'
+          click_button 'Create'
+          sleep 0.5
+        end
+      end.to change(Task, :count).by(1)
 
       expect(page).to have_content('Task was successfully created.')
-      expect(page).to have_content('New Task')
+      expect(page).to have_content('New Task for Company 1')
+    end
+
+    it 'does not allow user1 to see or manage tasks from another company' do
+      expect(page).not_to have_content('Task from another company')
     end
 
     it 'displays an error when trying to create a task without a name' do
-      visit tasks_path
-
       click_on 'New Task'
 
       within('#new_task') do
@@ -53,8 +61,6 @@ RSpec.describe 'Tasks', type: :system do
     end
 
     it 'allows the user to edit an existing task' do
-      visit tasks_path
-
       within("#task_#{task1.id}") do
         find('a.task_edit').click
       end
@@ -70,13 +76,11 @@ RSpec.describe 'Tasks', type: :system do
     end
 
     it 'allows the user to delete a task' do
-      visit tasks_path
-
       expect do
         within("#task_#{task1.id}") do
           accept_confirm { find('a.task_delete').click }
+          sleep 0.5
         end
-        sleep 0.5
       end.to change(Task, :count).by(-1)
 
       expect(page).to have_content('Task was successfully destroyed.')

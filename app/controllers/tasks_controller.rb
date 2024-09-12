@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
 
   def index
-    @tasks = Task.order(created_at: :desc)
+    @tasks = current_company.tasks.order(created_at: :desc)
   end
 
   def show; end
@@ -14,7 +14,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = current_user.company.tasks.new(task_params)
+    @task = current_company.tasks.build(task_params)
 
     if @task.save
       respond_to do |format|
@@ -50,7 +50,7 @@ class TasksController < ApplicationController
   private
 
   def set_task
-    @task = Task.find(params[:id])
+    @task = current_company.tasks.find(params[:id])
   end
 
   def task_params
