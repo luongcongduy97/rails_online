@@ -42,7 +42,7 @@ div class="flex justify-center items-center min-h-screen bg-gray-100 dark:bg-gra
         = f.label :company_selection, 'Select a company or create a new one', class: 'block text-sm font-medium text-gray-700 dark:text-gray-300'
         = select_tag :company_selection, options_for_select([['Create New Company', 'new']] + Company.all.pluck(:name, :id)),
           prompt: 'Select a company or create a new one',
-          data: { action: 'change->company-selection#toggleFields' }, 
+          data: { action: 'change->company-selection#toggleFields' },
           class: 'mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm text-gray-800 dark:text-white bg-white \
                   dark:bg-gray-700 dark:focus:border-blue-300 focus:ring focus:ring-blue-200 dark:focus:ring-blue-500 \
                   focus:ring-opacity-50 focus:border-blue-500'
