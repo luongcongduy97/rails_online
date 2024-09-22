@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 20_240_910_131_905) do
+ActiveRecord::Schema[7.1].define(version: 20_240_921_145_614) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -20,6 +20,15 @@ ActiveRecord::Schema[7.1].define(version: 20_240_910_131_905) do
     t.string 'name'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+  end
+
+  create_table 'sub_tasks', force: :cascade do |t|
+    t.bigint 'task_id', null: false
+    t.date 'due_date', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index %w[due_date task_id], name: 'index_sub_tasks_on_due_date_and_task_id', unique: true
+    t.index ['task_id'], name: 'index_sub_tasks_on_task_id'
   end
 
   create_table 'tasks', force: :cascade do |t|
@@ -46,6 +55,7 @@ ActiveRecord::Schema[7.1].define(version: 20_240_910_131_905) do
     t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
   end
 
+  add_foreign_key 'sub_tasks', 'tasks'
   add_foreign_key 'tasks', 'companies'
   add_foreign_key 'users', 'companies'
 end
