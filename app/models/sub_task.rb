@@ -5,5 +5,5 @@ class SubTask < ApplicationRecord
 
   validates :due_date, presence: true, uniqueness: { scope: :task_id, message: 'already exists for this task' }
 
-  scope :order, -> { order(due_date: :asc) }
+  default_scope { order(due_date: :asc) }
 end

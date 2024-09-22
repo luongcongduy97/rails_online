@@ -3,6 +3,7 @@
 require 'faker'
 
 # Clear existing data to avoid duplication
+SubTask.destroy_all
 Task.destroy_all
 User.destroy_all
 Company.destroy_all
@@ -20,11 +21,18 @@ Company.destroy_all
     )
 
     5.times do
-      Task.create!(
+      task = Task.create!(
         name: Faker::Lorem.sentence(word_count: 3),
         description: Faker::Lorem.paragraph(sentence_count: 2),
         company:
       )
+
+      2.times do |i|
+        SubTask.create!(
+          task:,
+          due_date: Date.today + i.days
+        )
+      end
     end
   end
 end
