@@ -12,7 +12,10 @@ class SubTasksController < ApplicationController
     @sub_task = @task.sub_tasks.build(sub_task_params)
 
     if @sub_task.save
-      redirect_to task_path(@task), notice: 'Sub task was successfully created.'
+      respond_to do |format|
+        format.html { redirect_to task_path(@task), notice: 'Sub task was successfully created.' }
+        format.turbo_stream { flash.now[:notice] = 'Due date was successfully created.' }
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -22,7 +25,10 @@ class SubTasksController < ApplicationController
 
   def update
     if @sub_task.update(sub_task_params)
-      redirect_to task_path(@task), notice: 'Sub task was successfully updated.'
+      respond_to do |format|
+        format.html { redirect_to task_path(@task), notice: 'Sub task was successfully updated.' }
+        format.turbo_stream { flash.now[:notice] = 'Due date successfully updated.' }
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -30,8 +36,10 @@ class SubTasksController < ApplicationController
 
   def destroy
     @sub_task.destroy
-
-    redirect_to task_path(@task), notice: 'Sub task was successfully deleted.'
+    respond_to do |format|
+      format.html { redirect_to task_path(@task), notice: 'Sub task was successfully deleted.' }
+      format.turbo_stream { flash.now[:notice] = 'Due date was successfully deleted.' }
+    end
   end
 
   private
