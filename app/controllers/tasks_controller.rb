@@ -7,7 +7,9 @@ class TasksController < ApplicationController
     @tasks = current_company.tasks.order(created_at: :desc)
   end
 
-  def show; end
+  def show
+    @sub_tasks = @task.sub_tasks
+  end
 
   def new
     @task = Task.new

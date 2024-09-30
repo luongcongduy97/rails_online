@@ -1,0 +1,12 @@
+= turbo_stream.update SubTask.new, ''
+
+- if (previous_date = @sub_task.previous_date)
+  = turbo_stream.after previous_date
+    = render @sub_task, task: @task
+- else
+  = turbo_stream.prepend 'sub_tasks'
+    = render @sub_task, task: @task
+
+= turbo_stream.update 'flash' do
+  - flash.now[:notice] = 'Sub task was successfully created.'
+  = render 'layouts/flash'

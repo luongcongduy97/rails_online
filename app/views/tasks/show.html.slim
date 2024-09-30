@@ -1,1 +1,15 @@
-= @task.name
+div class='container mx-auto mt-12 px-5 max-w-screen-md'
+  div class='header flex justify-between items-center mb-4'
+    h1 class='text-4xl font-bold text-gray-800 dark:text-white'
+      = @task.name
+
+    = link_to 'New sub task', new_task_sub_task_path(@task),
+      data: { turbo_frame: dom_id(SubTask.new) },
+      class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 flex-shrink-0 ml-4 \
+              rounded shadow-lg dark:shadow-white/20 duration-300 ease-in-out transform hover:scale-105 dark:bg-blue-700'
+  hr class='h-1 bg-black dark:bg-white border-0 mb-4'
+
+  = turbo_frame_tag SubTask.new
+
+  = turbo_frame_tag 'sub_tasks'
+    = render @sub_tasks, task: @task

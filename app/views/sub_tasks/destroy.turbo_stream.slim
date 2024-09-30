@@ -1,0 +1,4 @@
+= turbo_stream.remove @sub_task
+= turbo_stream.update 'flash' do
+  - flash.now[:notice] = 'Sub task was successfully destroyed.'
+  = render 'layouts/flash'
