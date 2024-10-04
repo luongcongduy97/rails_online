@@ -36,14 +36,16 @@ jobs:
           ruby-version: "3.3.0"
           bundler-cache: true
 
-      - name: Install Yarn
+      - name: Install Bun
         run: |
-          curl -o- -L https://yarnpkg.com/install.sh | bash
-          export PATH="$HOME/.yarn/bin:$PATH"
+          curl -fsSL https://bun.sh/install | bash
+          echo 'export BUN_INSTALL="$HOME/.bun"' >> $GITHUB_ENV
+          echo 'export PATH="$BUN_INSTALL/bin:$PATH"' >> $GITHUB_ENV
+        shell: bash
 
       - name: Install Node.js dependencies
         run: |
-          yarn install
+          bun install
 
       - name: Install dependencies
         run: |
