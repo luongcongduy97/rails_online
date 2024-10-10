@@ -1,21 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Import third-party styles before Tailwind */
+@import 'flatpickr/dist/flatpickr.min.css';
 
-.task__icon {
-  stroke: #4A5568; /* Default color (gray-600) */
-}
-
-.dark .task__icon {
-  stroke: #D1D5DB; /* Dark mode color (gray-300) */
-}
-
-/*
-
-@layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
-  }
-}
-
-*/
+/* Import Tailwind CSS layers */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';

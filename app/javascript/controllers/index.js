@@ -10,6 +10,9 @@ application.register("company-selection", CompanySelectionController)
 import DarkModeController from "./dark_mode_controller"
 application.register("dark-mode", DarkModeController)
 
+import DatePickerController from "./date_picker_controller"
+application.register("date-picker", DatePickerController)
+
 import FlashMessageController from "./flash_message_controller"
 application.register("flash-message", FlashMessageController)
 
