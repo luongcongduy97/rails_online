@@ -13,8 +13,10 @@ html
   body class="bg-gray-100 dark:bg-gray-900 dark:text-white"
     = render 'layouts/navbar'
 
-    = turbo_frame_tag 'flash'
-      = render 'layouts/flash'
+    // Persistent flash messages container
+    div id="flash_messages" class="fixed top-16 right-4 z-50 space-y-4"
+
     main.dark:bg-gray-900.dark:text-white
       .container.mx-auto.mt-28.px-5.flex.justify-center
         = yield
+

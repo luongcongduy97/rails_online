@@ -1,4 +1,2 @@
 = turbo_stream.remove @task
-= turbo_stream.update 'flash' do
-  - flash.now[:notice] = 'Task was successfully destroyed.'
-  = render 'layouts/flash'
+= turbo_stream.append 'flash_messages', partial: 'layouts/flash'
