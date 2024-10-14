@@ -7,6 +7,4 @@
   = turbo_stream.prepend 'sub_tasks'
     = render @sub_task, task: @task
 
-= turbo_stream.update 'flash' do
-  - flash.now[:notice] = 'Sub task was successfully created.'
-  = render 'layouts/flash'
+= turbo_stream.append 'flash_messages', partial: 'layouts/flash'
