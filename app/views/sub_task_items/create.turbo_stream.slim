@@ -1,0 +1,12 @@
+= turbo_stream.replace nested_dom_id(@sub_task, SubTaskItem.new) do
+  = turbo_frame_tag nested_dom_id(@sub_task, SubTaskItem.new)
+
+- if @next_item.present?
+  = turbo_stream.before dom_id(@next_item) do
+    = render partial: 'sub_task_items/sub_task_item', locals: { sub_task_item: @sub_task_item }
+- else
+  = turbo_stream.append nested_dom_id(@sub_task, 'sub_task_items') do
+    = render partial: 'sub_task_items/sub_task_item', locals: { sub_task_item: @sub_task_item }
+
+= turbo_stream.append 'flash_messages' do
+  = render 'layouts/flash', flash: flash

@@ -1,0 +1,13 @@
+div id= dom_id(sub_task_item) class='flex items-center py-2 border-b border-gray-200 dark:border-gray-700'
+  div class='flex-1 px-2 text-sm font-medium text-gray-900 dark:text-gray-100'
+    = sub_task_item.name
+  div class='flex-1 px-2 text-sm text-gray-500 dark:text-gray-300'
+    = sub_task_item.priority_level
+  div class='px-2 text-right text-sm font-medium flex-shrink-0'
+    = link_to edit_task_sub_task_sub_task_item_path(sub_task_item.sub_task.task, sub_task_item.sub_task, sub_task_item),
+      class: 'text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-500' do
+      = heroicon 'pencil', options: { class: 'h-5 w-5 inline' }
+    = link_to task_sub_task_sub_task_item_path(sub_task_item.sub_task.task, sub_task_item.sub_task, sub_task_item),
+      method: :delete, data: { confirm: 'Are you sure?' },
+      class: 'text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-500 ml-2' do
+      = heroicon 'trash', options: { class: 'h-5 w-5 inline' }
