@@ -8,7 +8,7 @@ class TasksController < ApplicationController
   end
 
   def show
-    @sub_tasks = @task.sub_tasks
+    @sub_tasks = @task.sub_tasks.includes(:sub_task_items)
   end
 
   def new

@@ -48,7 +48,6 @@ RSpec.describe 'Sub Task', type: :system do
       click_on 'New sub task'
       expect do
         within('#new_sub_task') do
-          # Use JavaScript to set the value of the hidden Flatpickr input to an empty string
           execute_script("document.querySelector('input[name=\"sub_task[due_date]\"]').value = ''")
           click_on 'Create'
           sleep 0.5

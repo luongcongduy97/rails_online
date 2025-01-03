@@ -13,4 +13,24 @@
           data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete this sub task?' },
           class: 'sub_task_delete text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-500' do
           = heroicon 'trash', options: { class: 'h-6 w-6' }
-    shr class='mt-2 border-t dark:border-gray-700'
+
+    hr class='mt-2 border-t dark:border-gray-700'
+    - if sub_task.sub_task_items.any?
+      div class='mt-4'
+        div class='flex py-2 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider'
+          div class='flex-1 px-2' Name
+          div class='flex-1 px-2' Priority Level
+          div class='px-2 text-right' Actions
+
+        = turbo_frame_tag nested_dom_id(sub_task, 'sub_task_items') do
+          - sub_task.sub_task_items.order(priority_level: :asc).each do |item|
+            = render partial: 'sub_task_items/sub_task_item', locals: { sub_task_item: item }
+    - else
+      p class='mt-2 text-gray-500' No items yet.
+
+    = turbo_frame_tag nested_dom_id(sub_task, SubTaskItem.new)
+
+    div class='mt-4'
+      = link_to 'Add Item', new_task_sub_task_sub_task_item_path(sub_task.task, sub_task),
+        data: { turbo_frame: nested_dom_id(sub_task, SubTaskItem.new) },
+        class: 'text-green-600 hover:text-green-800'
