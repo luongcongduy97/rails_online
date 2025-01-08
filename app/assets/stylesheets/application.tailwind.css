@@ -1,7 +1,13 @@
 /* Import third-party styles before Tailwind */
-@import 'flatpickr/dist/flatpickr.min.css';
+@import "flatpickr/dist/flatpickr.min.css";
+@import "trix";
 
 /* Import Tailwind CSS layers */
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "actiontext.css";
+
+trix-toolbar .trix-button-group button {
+  background-color: white;
+}

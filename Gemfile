@@ -6,6 +6,7 @@ ruby '3.3.0'
 gem 'bootsnap', require: false
 gem 'devise'
 gem 'heroicon'
+gem 'image_processing', '~> 1.2'
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'jsbundling-rails', '~> 1.3'
