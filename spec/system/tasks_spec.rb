@@ -34,7 +34,7 @@ RSpec.describe 'Tasks', type: :system do
       expect do
         within('#new_task') do
           fill_in 'Name', with: 'New Task for Company 1'
-          fill_in 'Description', with: 'New task description for Company 1'
+          find('trix-editor').set('New task description for Company 1')
           click_button 'Create'
           sleep 0.5
         end
@@ -53,7 +53,7 @@ RSpec.describe 'Tasks', type: :system do
 
       within('#new_task') do
         fill_in 'Name', with: ''
-        fill_in 'Description', with: 'Task description without a name'
+        find('trix-editor').set('New task description for Company 1')
         click_button 'Create'
       end
 
@@ -67,7 +67,7 @@ RSpec.describe 'Tasks', type: :system do
 
       within("#task_#{task1.id}") do
         fill_in 'Name', with: 'Updated Task'
-        fill_in 'Description', with: 'Updated task description'
+        find('trix-editor').set('New task description for Company 1')
         click_button 'Update'
       end
 
