@@ -53,7 +53,7 @@ RSpec.describe 'Tasks', type: :system do
 
       within('#new_task') do
         fill_in 'Name', with: ''
-        find('trix-editor').set('New task description for Company 1')
+        find('trix-editor').set('New task description for Company 2')
         click_button 'Create'
       end
 
@@ -67,7 +67,7 @@ RSpec.describe 'Tasks', type: :system do
 
       within("#task_#{task1.id}") do
         fill_in 'Name', with: 'Updated Task'
-        find('trix-editor').set('New task description for Company 1')
+        find('trix-editor').set('New task description for Company 3')
         click_button 'Update'
       end
 
